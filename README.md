@@ -12,3 +12,8 @@ Features:
 - Possibility to restrict how long a particle can go from its starting point
 - The particles can be drawn as shapes coming from the starting point
 - The color of the particles can be set up by an static / dynamic image
+
+Coming soon:
+
+- Vector Field
+- Optical Flow (GPU)
