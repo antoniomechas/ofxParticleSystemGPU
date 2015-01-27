@@ -4,6 +4,10 @@ Particle system in GPU with multitexture
 This addon allows to create a partice system managed entirely in the GPU
 It is forked from the work done by Neil Mendoza at https://github.com/neilmendoza/ofxGpuParticles
 
+Example video:
+
+https://vimeo.com/117903303
+
 Features:
 
 - Different parameters for each particle individually: size, color, texture, etc.
