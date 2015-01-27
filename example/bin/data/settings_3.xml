@@ -1,0 +1,40 @@
+<GPU_Particulas>
+	<RESET>0</RESET>
+	<Num_Particulas_W>1280</Num_Particulas_W>
+	<Num_Particulas_H>800</Num_Particulas_H>
+	<gravity>0, 0</gravity>
+	<part_Color_1>0, 156, 255, 255</part_Color_1>
+	<part_Color_2>0, 0, 255, 255</part_Color_2>
+	<use_Multi_Tex>0</use_Multi_Tex>
+	<Particle_Size_Min>1.8465</Particle_Size_Min>
+	<Particle_Size_Max>1.8465</Particle_Size_Max>
+	<min_Velocidad>5.6</min_Velocidad>
+	<radiusSquared>148.65</radiusSquared>
+	<damping>0.99</damping>
+	<Back_to_Origin>260</Back_to_Origin>
+	<Origin_Static>1</Origin_Static>
+	<Particle_Texture>1</Particle_Texture>
+	<Color_Static>0</Color_Static>
+	<use_Enlarge_by_vel>1</use_Enlarge_by_vel>
+	<Enlarge_by_vel>0.3</Enlarge_by_vel>
+	<use_Size_by_vel>0</use_Size_by_vel>
+	<Size_by_vel>0</Size_by_vel>
+	<use_Vector_Field>0</use_Vector_Field>
+	<Vector_Field>10</Vector_Field>
+	<use_Velocidad_Color>1</use_Velocidad_Color>
+	<Velocidad_Color>300</Velocidad_Color>
+	<Black_when_Still>1</Black_when_Still>
+	<useVida>0</useVida>
+	<Vida_Min>100</Vida_Min>
+	<Vida_Max>100</Vida_Max>
+	<useMaxDst>1</useMaxDst>
+	<Max_Dst_Min>53.965</Max_Dst_Min>
+	<Max_Dst_Max>100</Max_Dst_Max>
+	<Wind>0</Wind>
+	<use_Optical_Flow>0</use_Optical_Flow>
+	<Optical_Flow>0.1</Optical_Flow>
+	<oFlowLambdaI>0.1</oFlowLambdaI>
+	<oFlowBlurAmount>1</oFlowBlurAmount>
+	<oFlowDisplaceAmount>0.5</oFlowDisplaceAmount>
+<GPU_Particulas/>
+</GPU_Particulas>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ofApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxGui\src\ofxBaseGui.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxGui\src\ofxButton.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxGui\src\ofxGuiGroup.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxGui\src\ofxLabel.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxGui\src\ofxPanel.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSlider.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxGui\src\ofxToggle.cpp">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMIOFlowGLSL\src\FlowShader.cpp">
+      <Filter>addons\ofxMIOFlowGLSL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxMIOFlowGLSL\src\ofxMioFlowGLSL.cpp">
+      <Filter>addons\ofxMIOFlowGLSL\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\addons\ofxParticleSystemGPU\src\ofxParticleSystemGPU.cpp">
+      <Filter>addons\ofxParticleSystemGPU\src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MultiTextura.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{71834F65-F3A9-211E-73B8-DC85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxGui">
+      <UniqueIdentifier>{4F2A59AF-5F4E-704B-D067-EC13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxGui\src">
+      <UniqueIdentifier>{645E9533-4DCD-6179-1CDF-CB65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMIOFlowGLSL">
+      <UniqueIdentifier>{7258B800-74DA-8867-534A-B8E0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxMIOFlowGLSL\src">
+      <UniqueIdentifier>{A6FC8B9C-61CA-600E-32A4-B14D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxParticleSystemGPU">
+      <UniqueIdentifier>{54497B1E-218B-3369-4E02-502B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons\ofxParticleSystemGPU\src">
+      <UniqueIdentifier>{C9E2DF7E-C18E-9DE5-D72A-64DB}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ofApp.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGui\src\ofxBaseGui.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGui\src\ofxButton.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGui\src\ofxGui.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGui\src\ofxGuiGroup.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGui\src\ofxLabel.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGui\src\ofxPanel.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSlider.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGui\src\ofxSliderGroup.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxGui\src\ofxToggle.h">
+      <Filter>addons\ofxGui\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMIOFlowGLSL\src\FlowShader.h">
+      <Filter>addons\ofxMIOFlowGLSL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxMIOFlowGLSL\src\ofxMioFlowGLSL.h">
+      <Filter>addons\ofxMIOFlowGLSL\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\addons\ofxParticleSystemGPU\src\ofxParticleSystemGPU.h">
+      <Filter>addons\ofxParticleSystemGPU\src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MultiTextura.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+</Project>
