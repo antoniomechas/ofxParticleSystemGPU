@@ -17,3 +17,11 @@ Coming soon:
 
 - Vector Field
 - Optical Flow (GPU)
+
+Dependencies:
+
+- ofxGui
+- ofxMioFlowGLSL (https://github.com/princemio/ofxMIOFlowGLSL). Coming soon for the optical flow in the GPU.
+
+Developed with OF 0.8.4 and windows 7 64 bits.
+Exaple includes project for Visual Studio 2012
