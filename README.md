@@ -30,3 +30,5 @@ Dependencies:
 
 Developed with OF 0.8.4 and windows 7 64 bits.
 Exaple includes project for Visual Studio 2012
+
+by http://antoniomechas.net
