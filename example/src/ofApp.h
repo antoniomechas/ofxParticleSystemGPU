@@ -29,6 +29,7 @@ class ofApp : public ofBaseApp{
 		//void					renderFrame		( float _width, float _height );
 		void					updateParticles	( );
 		ofTexture				*getWarpedImg	( ofTexture *texOrigen );
+		void					drawDebug		( );
 
 		int						width;
 		int						height;
@@ -40,12 +41,10 @@ class ofApp : public ofBaseApp{
 		MultiTextura			multiTextura;
 
 		ofShader				vectorFieldShader;
-		ofFbo					fbo;
 		ofFbo					fboVectorField;
 
 		ofVideoGrabber			videoIn;
 		ofFbo					fboWarp;
-		ofShader				shaderWarp;
 
 		//--------------------------------------------------------
 		//gui
@@ -65,4 +64,5 @@ class ofApp : public ofBaseApp{
 
 		int						iPreset;
 
+		bool					bDebug;
 };

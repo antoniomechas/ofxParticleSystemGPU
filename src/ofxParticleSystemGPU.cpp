@@ -69,7 +69,10 @@ void ofxParticleSystemGPU::init(unsigned width, unsigned height, int screenW, in
 	texStaticColor.allocate(screenW, screenH, GL_RGBA32F_ARB);
 	texVectorField.allocate(screenW, screenH, GL_RGBA32F_ARB);
 	texOpticalFlow.allocate(screenW, screenH, GL_RGBA32F_ARB);
-
+	zeroDynamicTexture(DynamicTextures::COLOR_STATIC);
+	zeroDynamicTexture(DynamicTextures::VECTOR_FIELD);
+	zeroDynamicTexture(DynamicTextures::OPTICAL_FLOW);
+	
 	//renderFBO.allocate(s);
 
     // mesh
@@ -116,7 +119,7 @@ void ofxParticleSystemGPU::init(unsigned width, unsigned height, int screenW, in
 		useSizeByVelocity = false;
 		sizeByVelocity = 0.0f;
 		useVectorField = false;
-		useOpticalFlow = false;
+		useOpticalFlow = true;
 		useMultiTex = false;
 	}
 
@@ -262,7 +265,8 @@ void ofxParticleSystemGPU::zeroDataTexture(unsigned idx,
     loadDataTexture(idx, zeroes, x, y, width, height);
     delete[] zeroes;
 }
-    
+
+   
 void ofxParticleSystemGPU::texturedQuad(float x, float y, float width, float height, float s, float t)
 {
     // TODO: change to triangle fan/strip
@@ -355,6 +359,39 @@ void ofxParticleSystemGPU::loadIntoTexture( DynamicTextures texIndex, float* dat
 	texVectorField.bind();
     glTexSubImage2D(GL_TEXTURE_RECTANGLE_ARB, 0, 0, 0, width, height, GL_RGBA, GL_FLOAT, data);
     texVectorField.unbind();
+
+}
+
+void ofxParticleSystemGPU::zeroDynamicTexture	( DynamicTextures texIndex )
+{
+	int w = texOpticalFlow.getWidth();
+	int h = texOpticalFlow.getHeight();
+	float* zeroes = new float[w * h * FLOATS_PER_TEXEL];
+    memset(zeroes, 0, sizeof(float) * w * h * FLOATS_PER_TEXEL);
+	
+	ofTexture *fbo;
+	switch (texIndex)
+	{
+
+		case DynamicTextures::COLOR_STATIC:
+			fbo = &texStaticColor;
+			break;
+			
+		case DynamicTextures::VECTOR_FIELD:
+			fbo = &texVectorField;
+			break;
+
+		case DynamicTextures::OPTICAL_FLOW:
+			fbo = &texOpticalFlow;
+			break;
+
+	}
+
+	fbo->bind();
+	glTexSubImage2D(GL_TEXTURE_RECTANGLE_ARB, 0, 0, 0, w, h, GL_RGBA, GL_FLOAT, zeroes);
+	fbo->unbind();
+
+	delete[] zeroes;
 
 }
 

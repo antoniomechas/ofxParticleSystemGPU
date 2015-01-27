@@ -16,14 +16,16 @@ void ofApp::setup(){
 	width = 1280;
 	height = 800;
 	
-	//videoIn.setDeviceID(0);
-	//videoIn.setDesiredFrameRate(60);
-	//videoIn.initGrabber(VIDEO_WIDTH, VIDEO_HEIGHT, true);
+	videoIn.setDeviceID(0);
+	videoIn.setDesiredFrameRate(60);
+	videoIn.initGrabber(VIDEO_WIDTH, VIDEO_HEIGHT, true);
 	
 	setupParticles();
 	
 	iPreset = 1;
 	load( iPreset );
+	
+	bDebug = false;
 
 }
 
@@ -31,7 +33,6 @@ void ofApp::setup(){
 void ofApp::setupParticles()
 {
 
-	shaderWarp.load("shaders/warpPerspective.vert","shaders/warpPerspective.frag");
 	fboWarp.allocate(width, height);	
 
     particleSystem.init(particlesW, particlesH, width, height);
@@ -56,8 +57,6 @@ void ofApp::setupParticles()
     s.width = width;
     s.height = height;
     s.numColorbuffers = 1;
-	
-	fbo.allocate(s);
 	
 	//FBO para el vector Field
 	s.width = VIDEO_WIDTH;
@@ -226,15 +225,17 @@ void ofApp::setupGui()
 	gui_GPUPart.add(particleSystem.maxDstMax.setup( "Max Dst Max", 100.0f, 1.0f, 1000.0f));
 	//gui_GPUPart.add(particleSystem.wind.setup( "Wind", 0, 0, 2));
 
-	//gui_GPUPart.add(particleSystem.useOpticalFlow.setup( "use Optical Flow", true));
-	//gui_GPUPart.add(particleSystem.opticalFlow.setup( "Optical Flow", 0.1f, 1.0f, 2000.0f));
-	//gui_GPUPart.add(oFlowLambdaI.setup( "oFlowLambdaI", 0.1f, 0.0f, 1.0f));
-	//gui_GPUPart.add(oFlowBlurAmount.setup( "oFlowBlurAmount", 1.0f, 0.0f, 10.0f));
-	//gui_GPUPart.add(oFlowDisplaceAmount.setup( "oFlowDisplaceAmount", 0.5f, 0.0f, 1.0f));
+	gui_GPUPart.add(particleSystem.useOpticalFlow.setup( "use Optical Flow", true));
+	gui_GPUPart.add(particleSystem.opticalFlow.setup( "Optical Flow", 0.1f, 1.0f, 2000.0f));
+	gui_GPUPart.add(oFlowLambdaI.setup( "oFlowLambdaI", 0.1f, 0.0f, 1.0f));
+	gui_GPUPart.add(oFlowBlurAmount.setup( "oFlowBlurAmount", 1.0f, 0.0f, 10.0f));
+	gui_GPUPart.add(oFlowDisplaceAmount.setup( "oFlowDisplaceAmount", 0.5f, 0.0f, 1.0f));
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+
+	videoIn.update();
 
 	if (reset)
 	{
@@ -243,32 +244,37 @@ void ofApp::update(){
 		reset = false;
 	}
 
-	//if (videoIn.isFrameNew())
-	//{
-	//	if (particleSystem.useOpticalFlow)
-	//	{
-	//		/*
-	//		ofTexture *tex;
-	//		tex = calibrador->getWarpedImg( &cam->getDepthMasked()->getTextureReference() );
-	//		mioFlow.update(calibrador->fboWarp.getTextureReference(), oFlowLambdaI, oFlowBlurAmount, oFlowDisplaceAmount);
-	//		particles.loadIntoTexture(ofxGpuParticles::DynamicTextures::OPTICAL_FLOW, &mioFlow.getFlowBlurTexture());
-	//		*/
-	//		mioFlow.update(videoIn.getTextureReference(), oFlowLambdaI, oFlowBlurAmount, oFlowDisplaceAmount);
-	//		particleSystem.loadIntoTexture(ofxParticleSystemGPU::DynamicTextures::OPTICAL_FLOW, &mioFlow.getFlowBlurTexture());
-	//	}
-	//	if (particleSystem.useVectorField)
-	//	{
-	//		fboVectorField.begin();
-	//			ofClear(0,0);
-	//			vectorFieldShader.begin();
-	//				vectorFieldShader.setUniformTexture("tex0", videoIn.getTextureReference(), 0);
-	//				vectorFieldShader.setUniform2f("screenSize", fboVectorField.getWidth(), fboVectorField.getHeight());
-	//				renderFrame(fboVectorField.getWidth(), fboVectorField.getHeight());
-	//			vectorFieldShader.end();
-	//		fboVectorField.end();
-	//		particleSystem.loadIntoTexture(ofxParticleSystemGPU::DynamicTextures::VECTOR_FIELD, &fboVectorField.getTextureReference());
-	//	}
-	//}
+	if (videoIn.isFrameNew())
+	{
+		if (particleSystem.useOpticalFlow)
+		{
+			/*
+			ofTexture *tex;
+			tex = calibrador->getWarpedImg( &cam->getDepthMasked()->getTextureReference() );
+			mioFlow.update(calibrador->fboWarp.getTextureReference(), oFlowLambdaI, oFlowBlurAmount, oFlowDisplaceAmount);
+			particles.loadIntoTexture(ofxGpuParticles::DynamicTextures::OPTICAL_FLOW, &mioFlow.getFlowBlurTexture());
+			*/
+			mioFlow.update(videoIn.getTextureReference(), oFlowLambdaI, oFlowBlurAmount, oFlowDisplaceAmount);
+			fboWarp.begin();
+				ofClear(0);
+				ofSetColor(255,255,255);
+				mioFlow.getFlowBlurTexture().draw(0,0);
+			fboWarp.end();
+			particleSystem.loadIntoTexture(ofxParticleSystemGPU::DynamicTextures::OPTICAL_FLOW, &fboWarp.getTextureReference());
+		}
+		//if (particleSystem.useVectorField)
+		//{
+		//	fboVectorField.begin();
+		//		ofClear(0,0);
+		//		vectorFieldShader.begin();
+		//			vectorFieldShader.setUniformTexture("tex0", videoIn.getTextureReference(), 0);
+		//			vectorFieldShader.setUniform2f("screenSize", fboVectorField.getWidth(), fboVectorField.getHeight());
+		//			renderFrame(fboVectorField.getWidth(), fboVectorField.getHeight());
+		//		vectorFieldShader.end();
+		//	fboVectorField.end();
+		//	particleSystem.loadIntoTexture(ofxParticleSystemGPU::DynamicTextures::VECTOR_FIELD, &fboVectorField.getTextureReference());
+		//}
+	}
 
 
 	particleSystem.update();
@@ -279,6 +285,12 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+
+	if (bDebug)
+	{
+		drawDebug();
+		return;
+	}
 
 	ofPushStyle();
 	
@@ -296,6 +308,16 @@ void ofApp::draw(){
 
 }
 
+void ofApp::drawDebug()
+{
+	ofBackground(0,0,0);
+	ofSetColor(255,255,255);
+	videoIn.getTextureReference().draw(0,0);
+	mioFlow.drawFlowGrid(640,480);
+	mioFlow.drawFlowGridRaw(640,0);
+	mioFlow.drawReposition(0,480);
+
+}
 
 //void ofApp::renderFrame(float _width, float _height)
 //{
@@ -329,6 +351,11 @@ void ofApp::keyPressed(int key){
 	if (key >= '1' && key <= '9')
 		load(key - '0');
 
+	if (key == 'd')
+		bDebug = !bDebug;
+	
+	if (key == 'v')
+		videoIn.videoSettings();
 }
 
 void ofApp::save( int preset )

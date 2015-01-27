@@ -90,6 +90,7 @@ public:
         
 	void		loadIntoTexture		( DynamicTextures texIndex, ofTexture *texture );
 	void		loadIntoTexture		( DynamicTextures texIndex, float* data, unsigned x, unsigned y );
+	void		zeroDynamicTexture	( DynamicTextures texIndex );
 
 	void		setMultiTexture		( ofTexture *tex );
 

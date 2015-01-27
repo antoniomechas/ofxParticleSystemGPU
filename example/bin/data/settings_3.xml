@@ -31,10 +31,10 @@
 	<Max_Dst_Min>53.965</Max_Dst_Min>
 	<Max_Dst_Max>100</Max_Dst_Max>
 	<Wind>0</Wind>
-	<use_Optical_Flow>0</use_Optical_Flow>
-	<Optical_Flow>0.1</Optical_Flow>
+	<use_Optical_Flow>1</use_Optical_Flow>
+	<Optical_Flow>680.66</Optical_Flow>
 	<oFlowLambdaI>0.1</oFlowLambdaI>
 	<oFlowBlurAmount>1</oFlowBlurAmount>
 	<oFlowDisplaceAmount>0.5</oFlowDisplaceAmount>
-<GPU_Particulas/>
+<GPU_Particulas/>
 </GPU_Particulas>
