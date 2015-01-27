@@ -1,7 +1,7 @@
 # ofxParticleSystemGPU
 Particle system in GPU with multitexture
 
-This addon allows to create a partice system managed entirely in the GPU
+This Openframeworks addon allows to create a partice system managed entirely in the GPU
 It is forked from the work done by Neil Mendoza at https://github.com/neilmendoza/ofxGpuParticles
 
 Example video:
