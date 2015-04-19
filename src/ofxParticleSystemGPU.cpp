@@ -69,6 +69,7 @@ void ofxParticleSystemGPU::init(unsigned width, unsigned height, int screenW, in
 	texStaticColor.allocate(screenW, screenH, GL_RGBA32F_ARB);
 	texVectorField.allocate(screenW, screenH, GL_RGBA32F_ARB);
 	texOpticalFlow.allocate(screenW, screenH, GL_RGBA32F_ARB);
+	texMask.allocate(screenW, screenH, GL_RGBA32F_ARB);
 	zeroDynamicTexture(DynamicTextures::COLOR_STATIC);
 	zeroDynamicTexture(DynamicTextures::VECTOR_FIELD);
 	zeroDynamicTexture(DynamicTextures::OPTICAL_FLOW);
@@ -101,6 +102,8 @@ void ofxParticleSystemGPU::init(unsigned width, unsigned height, int screenW, in
 
 		// Loading and setings of the variables of the textures of the particles
 		sparkImg.loadImage("images/spark.png");
+		//sparkImg.loadImage("images/logo_alpha.png");
+
 		imgWidth = sparkImg.getWidth();
 		imgHeight = sparkImg.getHeight();
 
@@ -146,10 +149,10 @@ void ofxParticleSystemGPU::update()
 			//updater
 			int texIndex = fbos[currentReadFbo].getNumTextures();
 			//updateShader.setUniformTexture("texStaticColor", texStaticColor , texIndex++);
-			//if (useVectorField)
-			//	updateShader.setUniformTexture("texVectorField", texVectorField , texIndex++);
-			if (useOpticalFlow)
-				updateShader.setUniformTexture("texOpticalFlow", texOpticalFlow , texIndex++);
+			if (useVectorField)
+				updateShader.setUniformTexture("texVectorField", texVectorField , texIndex++);
+			//if (useOpticalFlow)
+			//	updateShader.setUniformTexture("texOpticalFlow", texOpticalFlow , texIndex++);
 			updateShader.setUniform1f("minVelocidad", minVelocidad); 
 			updateShader.setUniform1f("damping", damping); 
 			float vField = 0.0f;
@@ -333,7 +336,7 @@ void ofxParticleSystemGPU::load(const string& fileName)
     else ofLogError() << "Could not load particle data from " << ofToDataPath(fileName, true);
 }
 
-void ofxParticleSystemGPU::loadIntoTexture( DynamicTextures texIndex, ofTexture *texture)
+void ofxParticleSystemGPU::loadIntoTexture( int texIndex, ofTexture *texture)
 {
 	switch (texIndex)
 	{
@@ -349,11 +352,14 @@ void ofxParticleSystemGPU::loadIntoTexture( DynamicTextures texIndex, ofTexture 
 		case DynamicTextures::OPTICAL_FLOW:
 			texOpticalFlow = *texture;
 			break;
-
+		
+		case DynamicTextures::MASK:
+			texMask = *texture;
+			break;
 	}
 }
 
-void ofxParticleSystemGPU::loadIntoTexture( DynamicTextures texIndex, float* data, unsigned width, unsigned height)
+void ofxParticleSystemGPU::loadIntoTexture( int texIndex, float* data, unsigned width, unsigned height)
 {
 	        
 	texVectorField.bind();
@@ -362,7 +368,7 @@ void ofxParticleSystemGPU::loadIntoTexture( DynamicTextures texIndex, float* dat
 
 }
 
-void ofxParticleSystemGPU::zeroDynamicTexture	( DynamicTextures texIndex )
+void ofxParticleSystemGPU::zeroDynamicTexture	( int texIndex )
 {
 	int w = texOpticalFlow.getWidth();
 	int h = texOpticalFlow.getHeight();

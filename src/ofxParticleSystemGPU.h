@@ -45,7 +45,7 @@ public:
         
     // you don't have to use these but makes
     // code more readable
-    enum DataTextureIndex
+    enum DataTextureIndex : int
     {
         POSITION,
         VELOCITY,
@@ -56,11 +56,12 @@ public:
 		LAST_INDEX
     };
 
-	enum DynamicTextures
+	enum DynamicTextures : int
     {
         COLOR_STATIC,
         VECTOR_FIELD,
-        OPTICAL_FLOW
+        OPTICAL_FLOW,
+		MASK
     };
         
     ofxParticleSystemGPU();
@@ -88,9 +89,9 @@ public:
     void		save				( const string& fileName );
     void		load				( const string& fileName );
         
-	void		loadIntoTexture		( DynamicTextures texIndex, ofTexture *texture );
-	void		loadIntoTexture		( DynamicTextures texIndex, float* data, unsigned x, unsigned y );
-	void		zeroDynamicTexture	( DynamicTextures texIndex );
+	void		loadIntoTexture		( int texIndex, ofTexture *texture );
+	void		loadIntoTexture		( int texIndex, float* data, unsigned x, unsigned y );
+	void		zeroDynamicTexture	( int texIndex );
 
 	void		setMultiTexture		( ofTexture *tex );
 
@@ -141,6 +142,7 @@ private:
 	ofTexture				texStaticColor;		// textura del tamaño de la pantalla, que indica el color de cada pixel
 	ofTexture				texVectorField;		// textura del tamaño de la pantalla, indica vector field en cada pixel (r,g; b = 0);
 	ofTexture				texOpticalFlow;		// textura del tamaño de la pantalla, indica vector field en cada pixel (r,g; b = 0);
+	ofTexture				texMask;			// textura del tamaño de la pantalla, mascara
 
 	ofTexture				*texMultiTexture;	// textura para la multitextura
 	bool					bMultiTextureSet;	// si no está a true, no se puede utilizar multitextura
