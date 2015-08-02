@@ -149,10 +149,10 @@ void ofxParticleSystemGPU::update()
 			//updater
 			int texIndex = fbos[currentReadFbo].getNumTextures();
 			//updateShader.setUniformTexture("texStaticColor", texStaticColor , texIndex++);
-			if (useVectorField)
-				updateShader.setUniformTexture("texVectorField", texVectorField , texIndex++);
-			//if (useOpticalFlow)
-			//	updateShader.setUniformTexture("texOpticalFlow", texOpticalFlow , texIndex++);
+			//if (useVectorField)
+			//	updateShader.setUniformTexture("texVectorField", texVectorField , texIndex++);
+			if (useOpticalFlow)
+				updateShader.setUniformTexture("texOpticalFlow", texOpticalFlow , texIndex++);
 			updateShader.setUniform1f("minVelocidad", minVelocidad); 
 			updateShader.setUniform1f("damping", damping); 
 			float vField = 0.0f;
